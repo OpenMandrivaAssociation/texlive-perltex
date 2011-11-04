@@ -1,3 +1,9 @@
+# revision 19702
+# category Package
+# catalog-ctan /macros/latex/contrib/perltex
+# catalog-date 2010-07-24 23:20:00 +0200
+# catalog-license lppl
+# catalog-version 2.1
 Name:		texlive-perltex
 Version:	2.1
 Release:	1
@@ -58,6 +64,7 @@ document to places where PerlTeX is not available.
 #- source
 %doc %{_texmfdistdir}/source/latex/perltex/perltex.dtx
 %doc %{_texmfdistdir}/source/latex/perltex/perltex.ins
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -74,3 +81,5 @@ mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_mandir}/man1
 mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
