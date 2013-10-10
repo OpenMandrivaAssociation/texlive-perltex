@@ -1,12 +1,12 @@
-# revision 26313
+# revision 29752
 # category Package
 # catalog-ctan /macros/latex/contrib/perltex
-# catalog-date 2010-07-24 23:20:00 +0200
+# catalog-date 2012-06-12 18:08:23 +0200
 # catalog-license lppl
 # catalog-version 2.1
 Name:		texlive-perltex
 Version:	2.1
-Release:	3
+Release:	4
 Summary:	Define LaTeX macros in terms of Perl code
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/perltex
@@ -50,7 +50,7 @@ document to places where PerlTeX is not available.
 %doc %{_texmfdistdir}/doc/latex/perltex/example.tex
 %doc %{_texmfdistdir}/doc/latex/perltex/perltex.pdf
 %doc %{_mandir}/man1/perltex.1*
-%doc %{_texmfdir}/doc/man/man1/perltex.man1.pdf
+%doc %{_texmfdistdir}/doc/man/man1/perltex.man1.pdf
 #- source
 %doc %{_texmfdistdir}/source/latex/perltex/perltex.dtx
 %doc %{_texmfdistdir}/source/latex/perltex/perltex.ins
@@ -67,24 +67,6 @@ pushd %{buildroot}%{_bindir}
     ln -sf %{_texmfdistdir}/scripts/perltex/perltex.pl perltex
 popd
 mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
+cp -fpar texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_mandir}/man1
-mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
-
-
-%changelog
-* Wed Aug 08 2012 Paulo Andrade <pcpa@mandriva.com.br> 2.1-3
-+ Revision: 812748
-- Update to latest release.
-
-* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 2.1-2
-+ Revision: 754809
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 2.1-1
-+ Revision: 719234
-- texlive-perltex
-- texlive-perltex
-- texlive-perltex
-- texlive-perltex
-
+mv %{buildroot}%{_texmfdistdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
