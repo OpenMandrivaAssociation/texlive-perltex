@@ -1,4 +1,4 @@
-# revision 29752
+# revision 32576
 # category Package
 # catalog-ctan /macros/latex/contrib/perltex
 # catalog-date 2012-06-12 18:08:23 +0200
@@ -6,7 +6,7 @@
 # catalog-version 2.1
 Name:		texlive-perltex
 Version:	2.1
-Release:	8
+Release:	9
 Summary:	Define LaTeX macros in terms of Perl code
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/perltex
