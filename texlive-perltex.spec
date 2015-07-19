@@ -6,7 +6,7 @@
 # catalog-version 2.1
 Name:		texlive-perltex
 Version:	2.1
-Release:	12
+Release:	13
 Summary:	Define LaTeX macros in terms of Perl code
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/perltex
