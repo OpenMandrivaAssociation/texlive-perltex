@@ -1,19 +1,13 @@
-# revision 32576
-# category Package
-# catalog-ctan /macros/latex/contrib/perltex
-# catalog-date 2012-06-12 18:08:23 +0200
-# catalog-license lppl
-# catalog-version 2.1
 Name:		texlive-perltex
-Version:	2.1
-Release:	15
+Version:	52162
+Release:	1
 Summary:	Define LaTeX macros in terms of Perl code
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/perltex
 License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.doc.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.source.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.r%{version}.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.doc.r%{version}.tar.xz
+Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.source.r%{version}.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -34,12 +28,12 @@ specific, noperltex.sty that is useful when distributing a
 document to places where PerlTeX is not available.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
@@ -57,14 +51,15 @@ document to places where PerlTeX is not available.
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1 -a2
+%setup -c -a1 -a2
+%autopatch -p1
 
 %build
 
 %install
 mkdir -p %{buildroot}%{_bindir}
 pushd %{buildroot}%{_bindir}
-    ln -sf %{_texmfdistdir}/scripts/perltex/perltex.pl perltex
+ln -sf %{_texmfdistdir}/scripts/perltex/perltex.pl perltex
 popd
 mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf-dist %{buildroot}%{_datadir}
