@@ -1,6 +1,6 @@
 Name:		texlive-perltex
-Version:	52162
-Release:	2
+Version:	73044
+Release:	1
 Summary:	Define LaTeX macros in terms of Perl code
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/perltex
