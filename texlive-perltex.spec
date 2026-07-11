@@ -1,67 +1,31 @@
-Name:		texlive-perltex
-Version:	73044
-Release:	1
+%global tl_name perltex
+%global tl_revision 79618
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	2.3
+Release:	%{tl_revision}.1
 Summary:	Define LaTeX macros in terms of Perl code
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/perltex
-License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.source.r%{version}.tar.xz
+License:	lppl1.3c
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/perltex.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
-Provides:	texlive-perltex.bin = %{EVRD}
+BuildSystem:	texlive
+Requires:	texlive(perltex.bin)
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-PerlTeX is a combination Perl script (perltex.pl) and LaTeX2e
-package (perltex.sty) that, together, give the user the ability
-to define LaTeX macros in terms of Perl code. Once defined, a
-Perl macro becomes indistinguishable from any other LaTeX
-macro. PerlTeX thereby combines LaTeX's typesetting power with
-Perl's programmability. PerlTeX will make use of persistent
-named pipes, and thereby run more efficiently, on operating
-systems that offer them (mostly Unix-like systems). Also
-provided is a switch to generate a PerlTeX-free, document-
-specific, noperltex.sty that is useful when distributing a
-document to places where PerlTeX is not available.
+PerlTeX is a combination Perl script (perltex.pl) and LaTeX2e package
+(perltex.sty) that, together, give the user the ability to define LaTeX
+macros in terms of Perl code. Once defined, a Perl macro becomes
+indistinguishable from any other LaTeX macro. PerlTeX thereby combines
+LaTeX's typesetting power with Perl's programmability. PerlTeX will make
+use of persistent named pipes, and thereby run more efficiently, on
+operating systems that offer them (mostly Unix-like systems). Also
+provided is a switch to generate a PerlTeX-free, document-specific,
+noperltex.sty that is useful when distributing a document to places
+where PerlTeX is not available.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_bindir}/perltex
-%{_texmfdistdir}/scripts/perltex/perltex.pl
-%{_texmfdistdir}/tex/latex/perltex/perltex.sty
-%doc %{_texmfdistdir}/doc/latex/perltex/README
-%doc %{_texmfdistdir}/doc/latex/perltex/example.tex
-%doc %{_texmfdistdir}/doc/latex/perltex/perltex.pdf
-%doc %{_mandir}/man1/perltex.1*
-%doc %{_texmfdistdir}/doc/man/man1/perltex.man1.pdf
-#- source
-%doc %{_texmfdistdir}/source/latex/perltex/perltex.dtx
-%doc %{_texmfdistdir}/source/latex/perltex/perltex.ins
-
-#-----------------------------------------------------------------------
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_bindir}
-pushd %{buildroot}%{_bindir}
-ln -sf %{_texmfdistdir}/scripts/perltex/perltex.pl perltex
-popd
-mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf-dist %{buildroot}%{_datadir}
-mkdir -p %{buildroot}%{_mandir}/man1
-mv %{buildroot}%{_texmfdistdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
