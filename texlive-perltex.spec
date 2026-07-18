@@ -1,5 +1,6 @@
 %global tl_name perltex
 %global tl_revision 79618
+%global tl_bin_links perltex:%{_texmfdistdir}/scripts/perltex/perltex.pl
 
 Name:		texlive-%{tl_name}
 Epoch:		1
@@ -16,6 +17,8 @@ BuildArch:	noarch
 BuildSystem:	texlive
 Requires:	texlive(perltex.bin)
 Provides:	texlive(%{tl_name}) = %{tl_revision}
+Provides:	texlive(%{tl_name}.bin) = %{tl_revision}
+Provides:	texlive-%{tl_name}.bin = %{EVRD}
 
 %description
 PerlTeX is a combination Perl script (perltex.pl) and LaTeX2e package
